@@ -1,28 +1,28 @@
 <div align="center">
 
-<h2>IntentTalk: Future-Grounded Motion Planning for Co-Speech Gesture Generation</h2>
+<h2>PlanTalk: Future-Grounded Motion Planning for Co-Speech Gesture Generation</h2>
 
 <p>
-<strong>Official implementation of IntentTalk, a future-grounded speech-to-plan-to-motion framework for holistic co-speech gesture generation.</strong>
+<strong>Official implementation of PlanTalk, a future-grounded speech-to-plan-to-motion framework for holistic co-speech gesture generation.</strong>
 </p>
 
 <!-- Replace the links below after release -->
 
 <a href="static/pdfs/TMM_20260903.pdf"><img src="https://img.shields.io/badge/Paper-red"></a>
-<a href="https://zjy-2020.github.io/IntentTalk/"><img src="https://img.shields.io/badge/Project-purple"></a>
+<a href="https://zjy-2020.github.io/PlanTalk/"><img src="https://img.shields.io/badge/Project-purple"></a>
 <a href="#"><img src="https://img.shields.io/badge/Model_Weights-Coming_Soon-yellow"></a>
 
 
 <!-- Replace with your teaser figure -->
 
-<img src="static/teaser.png" alt="IntentTalk teaser" style="width:100%;">
+<img src="static/teaser.png" alt="PlanTalk teaser" style="width:100%;">
 
 </div>
 
 # 📣 Updates
 
-* **[2026-09]** Release training and inference code for IntentTalk.
-* **[Coming Soon]** Release pretrained future motion planner and IntentTalk checkpoints.
+* **[2026-09]** Release training and inference code for PlanTalk.
+* **[Coming Soon]** Release pretrained future motion planner and PlanTalk checkpoints.
 * **[Coming Soon]** Release evaluation scripts and qualitative examples on BEAT2.
 
 # 💡 Overview
@@ -35,7 +35,7 @@ Most existing speech-driven gesture generation methods directly map speech featu
 low-level motion sequences, leaving high-level gesture organization and detailed motion
 realization entangled.
 
-**IntentTalk** introduces an explicit intermediate **future motion plan** to model upcoming
+**PlanTalk** introduces an explicit intermediate **future motion plan** to model upcoming
 gesture organization before detailed motion generation.
 
 The framework follows a
@@ -44,7 +44,7 @@ The framework follows a
 
 generation paradigm.
 
-Given speech context, IntentTalk first predicts a discrete future-oriented motion plan that
+Given speech context, PlanTalk first predicts a discrete future-oriented motion plan that
 captures the organization of an upcoming motion window. The predicted plan is subsequently
 used to regulate **when** semantic motion should be activated and **how** the planned motion
 should be realized across different body regions.
@@ -71,7 +71,7 @@ The framework consists of three key components:
 
 # 🧠 Future-Grounded Motion Planning
 
-Instead of representing only the current motion state, IntentTalk explicitly summarizes
+Instead of representing only the current motion state, PlanTalk explicitly summarizes
 an upcoming motion window
 
 $$
@@ -106,9 +106,9 @@ The predicted plan subsequently provides structured guidance for detailed motion
 | MambaTalk      |     5.366 |     0.781 |     13.05 |     0.290 | 6.289 |     6.897 |
 | RAG-Gesture    |     8.082 |     0.734 |     11.97 |     0.390 | 7.248 |     6.947 |
 | SemTalk        |     4.278 |     0.777 |     12.91 |     0.430 | 6.153 |     6.938 |
-| **IntentTalk** | **3.812** | **0.817** | **13.95** | **0.442** |     — | **6.462** |
+| **PlanTalk** | **3.812** | **0.817** | **13.95** | **0.442** |     — | **6.462** |
 
-IntentTalk achieves improved motion quality and semantic relevance while maintaining strong
+PlanTalk achieves improved motion quality and semantic relevance while maintaining strong
 gesture diversity and speech-motion synchronization. In particular, the improvements in
 FGD and SRGR indicate that explicitly reasoning about upcoming gesture organization benefits
 both holistic motion generation and semantically meaningful gesture realization.
@@ -141,8 +141,8 @@ reveals the potential performance gain obtainable from improved speech-to-plan p
 We recommend using a dedicated Conda environment.
 
 ```bash
-conda create -n intenttalk python=3.8 -y
-conda activate intenttalk
+conda create -n PlanTalk python=3.8 -y
+conda activate PlanTalk
 ```
 
 Install PyTorch and the required dependencies:
@@ -157,13 +157,13 @@ Please ensure that the CUDA and PyTorch versions are compatible with your local 
 
 ## BEAT2
 
-IntentTalk is primarily evaluated on the **BEAT2** dataset using SMPL-X motion
+PlanTalk is primarily evaluated on the **BEAT2** dataset using SMPL-X motion
 representations.
 
 Please download BEAT2 following the official dataset instructions and organize it as:
 
 ```text
-IntentTalk/
+PlanTalk/
 ├── BEAT2/
 │   └── beat_english_v2.0.0/
 ├── configs/
@@ -178,7 +178,7 @@ The original dataset is not redistributed in this repository.
 
 # 📥 Pretrained Models
 
-IntentTalk requires several pretrained components, including:
+PlanTalk requires several pretrained components, including:
 
 * motion representation models,
 * speech feature encoder,
@@ -192,18 +192,18 @@ After downloading the released checkpoints, organize the weights as:
 weights/
 ├── pretrained_vq/
 ├── future_plan/
-│   └── intenttalk_future_plan_vq.bin
+│   └── PlanTalk_future_plan_vq.bin
 ├── speech_encoder/
 ├── base_motion/
-└── intenttalk/
-    └── intenttalk_best.bin
+└── PlanTalk/
+    └── PlanTalk.bin
 ```
 
 Pretrained checkpoints will be released after publication.
 
 # 🚀 Training
 
-IntentTalk follows a staged training strategy.
+PlanTalk follows a staged training strategy.
 
 ## Stage 1: Learn the Future Motion-Plan Space
 
@@ -227,7 +227,7 @@ Example:
 
 ```bash
 python train.py \
-    --config configs/intenttalk_future_plan.yaml \
+    --config configs/PlanTalk_future_plan.yaml \
     --train_plan
 ```
 
@@ -256,12 +256,12 @@ Example:
 
 ```bash
 python train.py \
-    --config configs/intenttalk.yaml \
+    --config configs/PlanTalk.yaml \
     --train_planner \
-    --plan_vq_ckpt weights/future_plan/intenttalk_future_plan_vq.bin
+    --plan_vq_ckpt weights/future_plan/PlanTalk_future_plan_vq.bin
 ```
 
-## Stage 3: Train IntentTalk Motion Generation
+## Stage 3: Train PlanTalk Motion Generation
 
 The predicted future plan is used by both the event-aware semantic gate and hierarchical
 plan-conditioned modulation modules.
@@ -291,20 +291,20 @@ Example training command:
 
 ```bash
 python train.py \
-    --config configs/intenttalk.yaml \
-    --plan_vq_ckpt weights/future_plan/intenttalk_future_plan_vq.bin
+    --config configs/PlanTalk.yaml \
+    --plan_vq_ckpt weights/future_plan/PlanTalk_future_plan_vq.bin
 ```
 
 # 🧪 Testing
 
-To evaluate a trained IntentTalk model:
+To evaluate a trained PlanTalk model:
 
 ```bash
 python train.py \
-    --config configs/intenttalk.yaml \
+    --config configs/PlanTalk.yaml \
     --test_state \
-    --load_ckpt weights/intenttalk/intenttalk_best.bin \
-    --plan_vq_ckpt weights/future_plan/intenttalk_future_plan_vq.bin
+    --load_ckpt weights/PlanTalk/PlanTalk_best.bin \
+    --plan_vq_ckpt weights/future_plan/PlanTalk_future_plan_vq.bin
 ```
 
 The evaluation includes metrics for:
@@ -333,7 +333,7 @@ Plan Acc@5
 
 # 🎙️ Inference
 
-At inference time, IntentTalk requires **speech only**.
+At inference time, PlanTalk requires **speech only**.
 
 No future motion or oracle motion-plan information is used.
 
@@ -357,11 +357,11 @@ Example:
 
 ```bash
 python train.py \
-    --config configs/intenttalk.yaml \
+    --config configs/PlanTalk.yaml \
     --inference \
     --audio_infer_path demo/example.wav \
-    --load_ckpt weights/intenttalk/intenttalk_best.bin \
-    --plan_vq_ckpt weights/future_plan/intenttalk_future_plan_vq.bin
+    --load_ckpt weights/PlanTalk/PlanTalk_best.bin \
+    --plan_vq_ckpt weights/future_plan/PlanTalk_future_plan_vq.bin
 ```
 
 # 🧩 Ablation Studies
@@ -393,7 +393,7 @@ spurious or temporally misplaced semantic gestures.
 The future plan is not hierarchically injected into different body regions, weakening
 cross-part coordination.
 
-## Full IntentTalk
+## Full PlanTalk
 
 ```text
 Future Motion Planning
@@ -407,7 +407,7 @@ Coherent Holistic Co-Speech Motion
 
 # 🔍 Plan Representation Analysis
 
-Beyond generation metrics, IntentTalk analyzes what information is encoded in the learned
+Beyond generation metrics, PlanTalk analyzes what information is encoded in the learned
 motion-plan representation.
 
 The released analysis code will include:
@@ -445,7 +445,7 @@ organization.
 
 # 🎬 Qualitative Results
 
-IntentTalk is designed to generate gestures with coherent temporal progression rather than
+PlanTalk is designed to generate gestures with coherent temporal progression rather than
 isolated locally plausible poses.
 
 Typical examples demonstrate:
@@ -460,7 +460,7 @@ Gesture Realization
 Cross-Part Coordination
 ```
 
-Compared with previous methods, IntentTalk can more clearly reproduce preparation-to-
+Compared with previous methods, PlanTalk can more clearly reproduce preparation-to-
 realization transitions and coordinate semantic gestures across the upper body, hands,
 torso, and lower-body stance.
 
@@ -471,23 +471,23 @@ Qualitative videos and side-by-side comparisons will be provided in the project 
 The main repository structure is expected to be:
 
 ```text
-IntentTalk/
+PlanTalk/
 ├── BEAT2/
 ├── configs/
-│   ├── intenttalk.yaml
-│   └── intenttalk_future_plan.yaml
+│   ├── PlanTalk.yaml
+│   └── PlanTalk_future_plan.yaml
 ├── dataloaders/
 ├── datasets/
 ├── models/
 │   ├── motion representations
 │   ├── future motion planner
 │   ├── event-aware semantic gate
-│   └── IntentTalk motion generator
+│   └── PlanTalk motion generator
 ├── utils/
 ├── weights/
 │   ├── pretrained_vq/
 │   ├── future_plan/
-│   └── intenttalk/
+│   └── PlanTalk/
 ├── demo/
 ├── train.py
 └── README.md
@@ -504,7 +504,7 @@ The repository will also provide scripts for generating qualitative comparison v
 
 # 📐 Method at a Glance
 
-The key difference between conventional speech-to-motion generation and IntentTalk is:
+The key difference between conventional speech-to-motion generation and PlanTalk is:
 
 ### Previous Paradigm
 
@@ -518,7 +518,7 @@ Gesture
 
 High-level gesture organization and detailed motion realization are learned jointly.
 
-### IntentTalk
+### PlanTalk
 
 ```text
 Speech
@@ -542,8 +542,8 @@ about upcoming gesture structure before synthesizing detailed motion.
 If you find this work useful for your research, please consider citing:
 
 ```bibtex
-@article{zhang2026intenttalk,
-  title   = {IntentTalk: Future-Grounded Motion Planning for Co-Speech Gesture Generation},
+@article{zhang2026planttalk,
+  title   = {PlanTalk: Future-Grounded Motion Planning for Co-Speech Gesture Generation},
   author  = {Jiye Zhang, Guibiao Liao, Dingwei Liu, Gaolin Yang, Xiuhua Jiang, and Jiangbo Xu},
   year    = {2026}
 }
@@ -564,4 +564,4 @@ projects for releasing their datasets, models, and code.
 Please follow the licenses of the corresponding datasets, SMPL-X models, pretrained
 speech models, and third-party repositories.
 
-The license for the IntentTalk source code will be provided upon release.
+The license for the PlanTalk source code will be provided upon release.
