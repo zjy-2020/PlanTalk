@@ -1,0 +1,56 @@
+# Pretraining stage: tokenize a shifted future-motion window.
+is_train: True
+train_only: True
+skip_test_init: True
+ddp: False
+gpus: [0]
+stat: ts
+root_path: ./
+out_path: ./outputs/
+project: plantalk_future_plan_tokenizer
+data_path: ./BEAT2/beat_english_v2.0.0/
+data_path_1: ./weights/
+training_speakers: [2]
+dataset: plantalk_dataloader
+train_path: datasets/beat2_plantalk_train
+test_path: datasets/beat2_plantalk_test.pkl
+cache_path: datasets/beat2_cache_2
+new_cache: False
+
+model: future_plan_tokenizer
+g_name: FuturePlanTokenizer
+trainer: future_plan_tokenizer
+pose_dims: 330
+pose_length: 64
+pre_frames: 4
+stride: 20
+pose_fps: 30
+motion_f: 256
+audio_f: 256
+vae_codebook_size: 256
+vae_layer: 4
+vae_length: 240
+vae_test_dim: 330
+vae_grow: [1, 1, 2, 1]
+ori_joints: beat_smplx_joints
+tar_joints: beat_smplx_full
+pose_rep: smplxflame_30
+
+intent_dim: 128
+num_intent_tokens: 64
+intent_num_heads: 4
+intent_dropout: 0.1
+plan_tokenizer_hidden: 512
+plan_tokenizer_layers: 2
+plan_vq_commitment: 0.25
+future_plan_horizon: 2
+future_plan_offset: 1
+
+batch_size: 128
+lr_base: 2.0e-4
+epochs: 100
+log_period: 10
+test_period: 20
+decay_epochs: 999
+grad_norm: 0.99
+random_seed: 43
