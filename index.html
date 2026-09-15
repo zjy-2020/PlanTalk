@@ -115,20 +115,47 @@ video{display:block;width:100%;height:auto;max-width:100%;background:#f4f4f6;bor
   </div>
 </section>
 
-<section class="section project-section" id="abstract">
-  <div class="container is-max-widescreen">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-     Co-speech gesture generation has made substantial progress in motion quality and speech--motion synchronization, yet existing methods predominantly map speech directly to motion or model semantic relevance at individual temporal positions. Such formulations provide limited explicit modeling of how a semantically relevant gesture should evolve over an upcoming temporal interval. We propose PlanTalk, a hierarchical speech-to-plan-to-motion framework that introduces a motion-grounded discrete plan as an intermediate representation between speech understanding and holistic motion realization. During training, a future motion-plan tokenizer encodes upcoming body-motion windows into discrete plan tokens, providing future-grounded supervision without requiring manually defined gesture categories or intention labels. A speech-to-plan predictor then learns to infer these plans solely from speech-semantic features, enabling future-plan prediction at inference without access to future motion. The predicted plans guide body-motion generation through two complementary mechanisms: an event-aware semantic gate refines when semantically relevant motion
-should be activated, while hierarchical plan-conditioned FiLM controls how the planned motion is realized across shared, body-part, and motion-token representations. Extensive experiments on BEAT2 and SHOW demonstrate that PlanTalk achieves state-of-the-art or competitive performance across motion quality, speech--motion synchronization, semantic relevance, and diversity, with particularly strong zero-shot generalization on SHOW.
-    </p>
-</div></div></div></div>
-</section>
+<section class="section project-section" id="abstract"> 
+  <div class="container is-max-widescreen"> 
 
+    <div class="columns is-centered has-text-centered"> 
+      <div class="column is-full"> 
+
+        <h2 class="title is-3">Abstract</h2> 
+
+        <div class="content has-text-justified"
+             style="font-size: 1.25rem; line-height: 1.8;"> 
+
+          <p> 
+            Co-speech gesture generation has made substantial progress in motion quality 
+            and speech--motion synchronization, yet existing methods predominantly map 
+            speech directly to motion or model semantic relevance at individual temporal 
+            positions. Such formulations provide limited explicit modeling of how a 
+            semantically relevant gesture should evolve over an upcoming temporal interval. 
+            We propose PlanTalk, a hierarchical speech-to-plan-to-motion framework that 
+            introduces a motion-grounded discrete plan as an intermediate representation 
+            between speech understanding and holistic motion realization. During training, 
+            a future motion-plan tokenizer encodes upcoming body-motion windows into discrete 
+            plan tokens, providing future-grounded supervision without requiring manually 
+            defined gesture categories or intention labels. A speech-to-plan predictor then 
+            learns to infer these plans solely from speech-semantic features, enabling 
+            future-plan prediction at inference without access to future motion. The predicted 
+            plans guide body-motion generation through two complementary mechanisms: an 
+            event-aware semantic gate refines when semantically relevant motion should be 
+            activated, while hierarchical plan-conditioned FiLM controls how the planned 
+            motion is realized across shared, body-part, and motion-token representations. 
+            Extensive experiments on BEAT2 and SHOW demonstrate that PlanTalk achieves 
+            state-of-the-art or competitive performance across motion quality, speech--motion 
+            synchronization, semantic relevance, and diversity, with particularly strong 
+            zero-shot generalization on SHOW. 
+          </p> 
+
+        </div>
+      </div>
+    </div>
+
+  </div> 
+</section>
   
 
   <section class="hero teaser project-section" id="method">
