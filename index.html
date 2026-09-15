@@ -158,37 +158,43 @@ video{display:block;width:100%;height:auto;max-width:100%;background:#f4f4f6;bor
 </section>
   
 
-<section class="hero teaser project-section" id="method"> 
-  <div class="container" style="max-width: 2400px;"> 
+<section class="hero teaser project-section" id="method">  
+  <div class="container" style="max-width: 2400px;">  
 
-    <h2 class="title is-3" style="text-align: center;">Method</h2> 
+    <h2 class="title is-3" style="text-align: center;">Method</h2>  
 
-    <div class="hero-body"> 
+    <div class="hero-body" style="padding-left: 0; padding-right: 0;">  
 
-      <center> 
-        <img src="static/teaser.png"
-             alt="PlanTalk Framework Pipeline"
-             style="width: 100%; max-width: 2400px;"> 
-      </center> 
-       
-      <div class="content has-text-justified"
-           style="margin-top: 20px; font-size: 1.25rem; line-height: 1.8;"> 
+      <center>  
+        <img src="static/teaser.png" 
+             alt="PlanTalk Framework Pipeline" 
+             style="width: 100%; max-width: 2400px;">  
+      </center>  
+        
+      <div class="content has-text-justified" 
+           style="
+             width: 100%;
+             max-width: 2400px;
+             margin: 20px auto 0 auto;
+             font-size: 1.25rem;
+             line-height: 1.8;
+           ">  
 
-        <p> 
-          Overview of PlanTalk. Stage I learns a motion-grounded discrete future-plan vocabulary 
-          from offset future body-motion windows and freezes the pretrained tokenizer and codebook. 
-          In Stage II, a speech-to-plan predictor infers discrete plans from speech-semantic features 
-          using the frozen codebook, while the facial stream remains directly speech-conditioned. 
-          The predicted plans guide body-motion generation through an event-aware semantic gate for 
-          when semantic motion is activated and hierarchical plan-conditioned FiLM for how the planned 
-          motion is realized. Future motion is required only for plan supervision during training, 
-          not at inference. 
-        </p> 
+        <p>  
+          Overview of PlanTalk. Stage I learns a motion-grounded discrete future-plan vocabulary  
+          from offset future body-motion windows and freezes the pretrained tokenizer and codebook.  
+          In Stage II, a speech-to-plan predictor infers discrete plans from speech-semantic features  
+          using the frozen codebook, while the facial stream remains directly speech-conditioned.  
+          The predicted plans guide body-motion generation through an event-aware semantic gate for  
+          when semantic motion is activated and hierarchical plan-conditioned FiLM for how the planned  
+          motion is realized. Future motion is required only for plan supervision during training,  
+          not at inference.  
+        </p>  
 
-      </div> 
+      </div>  
 
-    </div> 
-  </div> 
+    </div>  
+  </div>  
 </section>
 
 <section class="hero is-small project-section" id="demo">
