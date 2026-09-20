@@ -137,13 +137,13 @@ video{display:block;width:100%;height:auto;max-width:100%;background:#f4f4f6;bor
              ">  
  
           <p>  
-            Co-speech gesture generation has made substantial progress in motion quality and speech--motion synchronization, yet explicitly representing how semantically relevant motion unfolds over an upcoming interval remains challenging. 
-            We propose PlanTalk, a hierarchical speech-to-plan-to-motion framework that introduces discrete motion plans to organize short-horizon body-motion evolution. During pretraining, a future motion-plan tokenizer learns to encode 
-            and reconstruct temporally ordered windows of subsequent body-motion tokens, excluding the current token. The resulting discrete representations serve as motion plans that summarize upcoming motion evolution rather than a single 
-            future state. A speech-to-plan predictor learns to infer these plans from speech-semantic features without accessing future motion at inference. The predicted plans guide body-motion generation through two complementary mechanisms: 
-            an event-aware semantic gate refines <em>when</em> semantically relevant motion is activated, while hierarchical plan-conditioned feature-wise linear modulation (FiLM) modulates <em>how</em> the plan is realized across shared body, 
-            body-part, and motion-token representations. Experiments on BEAT2 demonstrate improvements in motion quality, 
-            speech--motion synchronization, diversity, and semantic relevance. Zero-shot evaluation on SHOW further demonstrates the cross-dataset generalization of the proposed framework.  
+            Co-speech gesture generation has made substantial progress in motion quality and speech--motion synchronization, yet existing methods largely focus on direct speech-to-motion mapping or position-wise semantic relevance, 
+            leaving the temporal evolution of semantically relevant gestures over upcoming intervals underexplored. We propose PlanTalk, a hierarchical speech-to-plan-to-motion framework that introduces discrete motion plans to organize 
+            short-horizon body-motion evolution. During pretraining, a future motion-plan tokenizer learns to encode and reconstruct temporally ordered windows of subsequent body-motion tokens, excluding the current token. The resulting 
+            discrete representations serve as motion plans that summarize upcoming motion evolution rather than a single future state. A speech-to-plan predictor learns to infer these plans from speech-semantic features without accessing 
+            future motion at inference. The predicted plans guide body-motion generation through two complementary mechanisms: an event-aware semantic gate refines <em>when</em> semantically relevant motion is activated, while hierarchical 
+            plan-conditioned feature-wise linear modulation (FiLM) modulates <em>how</em> the plan is realized across shared body, body-part, and motion-token representations. Experiments 
+            on BEAT2 demonstrate improvements in motion quality, speech--motion synchronization, diversity, and semantic relevance. Zero-shot evaluation on SHOW further demonstrates the cross-dataset generalization of the proposed framework.
           </p>  
  
         </div> 
